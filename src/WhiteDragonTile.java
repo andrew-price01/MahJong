@@ -3,6 +3,9 @@ import javax.swing.*;
 
 public class WhiteDragonTile extends Tile {
 	
+	public WhiteDragonTile() {
+		setToolTipText(toString());
+	}
 	public String toString() {
 		return "White Dragon";
 	}

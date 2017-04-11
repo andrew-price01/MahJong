@@ -7,6 +7,7 @@ public abstract class PictureTile extends Tile {
 
 	public PictureTile(String name) {
 		this.name = name;
+		setToolTipText(toString());
 	}
 
 	public String toString() {

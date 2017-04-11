@@ -63,7 +63,7 @@ public class Lab5 extends JFrame
 		addComponent(new FlowerTile("Chrysanthemum"), 5, 0);
 		addComponent(new FlowerTile("Orchid"), 5, 1);
 		addComponent(new FlowerTile("Plum"), 5, 2);
-		addComponent(new FlowerTile("Bamboo"), 5, 3);
+		addComponent(new FlowerTile("Sparrow"), 5, 3);
 
 		addComponent(new SeasonTile("Spring"), 6, 0);
 		addComponent(new SeasonTile("Summer"), 6, 1);

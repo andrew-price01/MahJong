@@ -2,7 +2,11 @@ import java.awt.*;
 import javax.swing.*;
 
 public class Tile extends JPanel {
-
+	
+	public int x = 0;
+	public int y = 0;
+	public int z;
+	
 	// Colors
 	public final static Color DarkGreen = new Color(0, 100, 0);
 	public final static Color LightGreen = new Color(0, 255, 0);
@@ -20,15 +24,17 @@ public class Tile extends JPanel {
 	private static int[] yMidBottom = { 90, 80, 80, 90 };
 	private static int[] xOutBottom = { 10, 20, 90, 80 };
 	private static int[] yOutBottom = { 100, 90, 90, 100 };
+	
+	public Tile() {
+		setSize(1000,1000);
+		setOpaque(false);
+		setPreferredSize(new Dimension(110, 110));
+	}
 
 	public boolean matches(Tile other) {
 		Tile otherObject = (Tile) other;
 
 		return this.getClass() == otherObject.getClass();
-	}
-
-	public Tile() {
-		setPreferredSize(new Dimension(110, 110));
 	}
 
 	public void paintComponent(Graphics g) {

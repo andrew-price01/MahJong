@@ -53,28 +53,32 @@ public class CharacterTile extends AbstractCharacterTile {
 			
 			g.setColor(Color.BLACK);
 			g.setFont(new Font("TimesRoman", Font.PLAIN, 27));
-			g.drawString(character, (getWidth() - width) / 2, (getHeight() / 2) - 15);
+			//g.drawString(character, (getWidth() - width) / 2, (getHeight() / 2) - 15);
+			g.drawString(character, 50, 40);
 		}
 		
 		// Symbol C
 		else if (symbol == 'C') {
 			g.setColor(Color.RED);
 			g.setFont(new Font("TimesRoman", Font.PLAIN, 50));
-			g.drawString(character, (getWidth() - width - 20) / 2, (getHeight() / 2) + 12);
+			//g.drawString(character, (getWidth() - width - 20) / 2, (getHeight() / 2) + 12);
+			g.drawString(character, 40, 60);
 		}
 		
 		// Symbol F
 		else if (symbol == 'F') {
 			g.setColor(Tile.LightGreen);
 			g.setFont(new Font("TimesRoman", Font.PLAIN, 50));
-			g.drawString(character, (getWidth() - width - 20) / 2, (getHeight() / 2) + 12);
+			//g.drawString(character, (getWidth() - width - 20) / 2, (getHeight() / 2) + 12);
+			g.drawString(character, 40, 65);
 		}
 		
 		// Symbols North, East, South, West
 		else {
 			g.setColor(Color.BLACK);
 			g.setFont(new Font("TimesRoman", Font.PLAIN, 50));
-			g.drawString(character, (getWidth() - width - 20) / 2, (getHeight() / 2) + 12);
+			//g.drawString(character, (getWidth() - width - 20) / 2, (getHeight() / 2) + 12);
+			g.drawString(character, 40, 65);
 		}
 		
 		

@@ -7,41 +7,29 @@ import javax.swing.*;
 
 public class MahJong extends JFrame {
 
+	ArrayList<Tile> deck = new ArrayList<Tile>();
+	Random rand = new Random();
+	
 	public MahJong() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		add(new MahJongBoard());
-		setSize(500,500);
+		setSize(500, 500);
 		setVisible(true);
 	}
-	
+
 	public class MahJongBoard extends JPanel {
-		
+
 		public MahJongBoard() {
 			setLayout(null);
+			tileDeck();
+			Collections.shuffle(deck, rand);
 			
-			
-//			A test to display tiles on top of each other
-//
-//			Tile t;
-//			t = new SeasonTile("Spring");
-//			t.setLocation(200,100);
-//			add(t);
-//			
-//			t = new SeasonTile("Summer");
-//			t.setLocation(179,121);
-//			add(t);
-//			
-//			t = new SeasonTile("Winter");
-//			t.setLocation(158,142);
-//			add(t);
+			Tile t = deck.remove(deck.size() - 1);
+			add(t);
 		}
-		
-		public void RandomTileDeck(int gameNumber) {
-			
-			Random rand = new Random(gameNumber);
-			
-			ArrayList<Tile> deck = new ArrayList<Tile>();
-			
+
+		public void tileDeck() {
+
 			for (int i = 0; i < 4; i++) {
 				deck.add(new CharacterTile('1'));
 				deck.add(new CharacterTile('2'));
@@ -58,7 +46,7 @@ public class MahJong extends JFrame {
 				deck.add(new CharacterTile('S'));
 				deck.add(new CharacterTile('C'));
 				deck.add(new CharacterTile('F'));
-				
+
 				deck.add(new CircleTile(1));
 				deck.add(new CircleTile(2));
 				deck.add(new CircleTile(3));
@@ -68,7 +56,7 @@ public class MahJong extends JFrame {
 				deck.add(new CircleTile(7));
 				deck.add(new CircleTile(8));
 				deck.add(new CircleTile(9));
-				
+
 				deck.add(new BambooTile(2));
 				deck.add(new BambooTile(3));
 				deck.add(new BambooTile(4));
@@ -88,12 +76,11 @@ public class MahJong extends JFrame {
 			deck.add(new SeasonTile("Summer"));
 			deck.add(new SeasonTile("Fall"));
 			deck.add(new SeasonTile("Winter"));
-			
-			Collections.shuffle(deck,rand);
 		}
+
 	}
-	
-	public static void main (String[] args) {
+
+	public static void main(String[] args) {
 		new MahJong();
 	}
 }

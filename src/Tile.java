@@ -3,8 +3,8 @@ import javax.swing.*;
 
 public class Tile extends JPanel {
 	
-	public int x = 0;
-	public int y = 0;
+	public int x;
+	public int y;
 	public int z;
 	
 	// Colors
@@ -26,7 +26,7 @@ public class Tile extends JPanel {
 	private static int[] yOutBottom = { 100, 90, 90, 100 };
 	
 	public Tile() {
-		setSize(1000,1000);
+		setSize(1300,1000);
 		setOpaque(false);
 		setPreferredSize(new Dimension(110, 110));
 	}

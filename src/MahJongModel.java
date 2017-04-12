@@ -9,10 +9,14 @@ public class MahJongModel {
 	
 	Tile tile = new Tile();
 	
-	public void positionTile(Tile t) {
-
+	public Tile positionTile(Tile t, int x, int y, int z) {
+		t.x = x;
+		t.y = y;
+		t.z = z;
+		t.setLocation(x,y);
+		return t;
 	}
-	
+
 	boolean isTileOpen(Tile t) {
 		return false;
 	}

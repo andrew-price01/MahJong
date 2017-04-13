@@ -1,4 +1,6 @@
 import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
@@ -7,158 +9,200 @@ import javax.swing.*;
 
 public class MahJong extends JFrame {
 
+	MahJongModel model = new MahJongModel();
+	
+	private Image dragon_bg = Toolkit.getDefaultToolkit().getImage("images/dragon_bg.png");
+
 	public ArrayList<Tile> deck = new ArrayList<Tile>();
-	ArrayList<ArrayList<Tile>> layer0 = new ArrayList();
-	ArrayList<ArrayList<Tile>> layer1 = new ArrayList();
-	ArrayList<ArrayList<Tile>> layer2 = new ArrayList();
-	ArrayList<ArrayList<Tile>> layer3 = new ArrayList();
-	ArrayList<ArrayList<Tile>> layer4 = new ArrayList();
 
 	Random rand = new Random();
 
 	public MahJong() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setTitle("MahJong Game");
 		add(new MahJongBoard());
-		setSize(1300, 1000);
+		setSize(1200, 650);
 		setVisible(true);
 	}
 
-	public class MahJongBoard extends JPanel {
+	public class MahJongBoard extends JPanel implements MouseListener {
 
 		public MahJongBoard() {
 			setLayout(null);
+			
 			tileDeck();
 			Collections.shuffle(deck, rand);
 			dealTiles();
+			
 		}
-		
-		public void dealTiles() {
-			// Layer 4
-						Row row20 = new Row(560, 280);
-						row20.addTiles(deck, 1);
-						for (Tile t: row20) {
-							row20.positionTile(t);
-							add(t);
-						}
-						
-						// Layer 3
-						Row row18 = new Row(510, 330);
-						row18.addTiles(deck, 2);
-						
-						Row row19 = new Row(510, 260);
-						row19.addTiles(deck, 2);
-						
-						layer3.add(row18);
-						layer3.add(row19);
-						
-						for (ArrayList<Tile> l : layer3) {
-							for (Tile t: l) {
-								row19.positionTile(t);
-								add(t);
-							}
-						}
-						
-						// Layer 2
-						Row row17 = new Row(420, 210);
-						row17.addTiles(deck, 4);
-						
-						Row row16 = new Row(420, 280);
-						row16.addTiles(deck, 4);
-						
-						Row row15 = new Row(420, 350);
-						row15.addTiles(deck, 4);
-						
-						Row row14 = new Row(420, 420);
-						row14.addTiles(deck, 4);
-						
-						layer2.add(row14);
-						layer2.add(row15);
-						layer2.add(row16);
-						layer2.add(row17);
-						
-						for (ArrayList<Tile> l : layer2) {
-							for (Tile t: l) {
-								row17.positionTile(t);
-								add(t);
-							}
-						}
-						
-						// Layer 1
-						Row row13 = new Row(330, 160);
-						row13.addTiles(deck, 6);
-						
-						Row row12 = new Row(330, 230);
-						row12.addTiles(deck, 6);
-						
-						Row row11 = new Row(330, 300);
-						row11.addTiles(deck, 6);
-						
-						Row row10 = new Row(330, 370);
-						row10.addTiles(deck, 6);
-						
-						Row row9 = new Row(330, 440);
-						row9.addTiles(deck, 6);
-						
-						Row row8 = new Row(330, 510);
-						row8.addTiles(deck, 6);
-						
-						layer1.add(row8);
-						layer1.add(row9);
-						layer1.add(row10);
-						layer1.add(row11);
-						layer1.add(row12);
-						layer1.add(row13);
-						
-						for (ArrayList<Tile> l : layer1) {
-							for (Tile t : l) {
-								row13.positionTile(t);
-								add(t);
-							}
-						}
-						
-						// Layer 0
-						Row row7 = new Row(100, 600);
-						row7.addTiles(deck, 12);
 
-						Row row6 = new Row(240, 530);
-						row6.addTiles(deck, 8);
+		public void paintComponent(Graphics g) {
+			super.paintComponent(g);
 
-						Row row5 = new Row(170, 460);
-						row5.addTiles(deck, 10);
+			g.setColor(Tile.Gold);
+			g.fillRect(0, 0, 1200, 650);
+			g.drawImage(dragon_bg, (this.getWidth() - dragon_bg.getWidth(this)) / 2, (this.getHeight() - dragon_bg.getHeight(this)) / 2, this);
 
-						Row row4 = new Row(100, 390);
-						row4.addTiles(deck, 12);
-
-						Row row3 = new Row(100, 320);
-						row3.addTiles(deck, 12);
-
-						Row row2 = new Row(170, 250);
-						row2.addTiles(deck, 10);
-
-						Row row1 = new Row(240, 180);
-						row1.addTiles(deck, 8);
-
-						Row row0 = new Row(100, 110);
-						row0.addTiles(deck, 12);
-
-						layer0.add(row7);
-						layer0.add(row6);
-						layer0.add(row5);
-						layer0.add(row4);
-						layer0.add(row3);
-						layer0.add(row2);
-						layer0.add(row1);
-						layer0.add(row0);
-
-						for (ArrayList<Tile> r : layer0) {
-							for (Tile t : r) {
-								if (t != null) {
-									row0.positionTile(t);
-									add(t);
-								}
-							}
-						}
 		}
+
+		public void dealTiles() {		
+			
+	//----------------------Layer 4------------------------//
+			Tile top = deck.remove(deck.size() - 1);
+			model.positionTile(top, 7, 4, 4);
+			top.setLocation((top.x * 70 + top.z * 20) - 40, (top.y * 70 - top.z * 20) - 30);
+			add(top);
+			
+	//----------------------Layer 3------------------------//
+			Row row1 = new Row(6,4);
+			row1.addTiles(deck, 2);
+			for (Tile t: row1) {
+				model.positionTile(t, row1.x, row1.y, 3);
+				t.setLocation((row1.x * 70 + t.z * 20), (row1.y * 70 - t.z * 20));
+				add(t);
+				row1.x += 1;
+			}
+			
+			Row row2 = new Row(6,3);
+			row2.addTiles(deck, 2);
+			for (Tile t: row2) {
+				model.positionTile(t, row2.x, row2.y, 3);
+				t.setLocation((row2.x * 70 + t.z * 20), (row2.y * 70 - t.z * 20));
+				add(t);
+				row2.x += 1;
+			}
+			
+	//----------------------Layer 2------------------------//
+			Row row3 = new Row(5,5);
+			row3.addTiles(deck, 4);
+			for (Tile t: row3) {
+				model.positionTile(t, row3.x, row3.y, 2);
+				t.setLocation((row3.x * 70 + t.z * 20), (row3.y * 70 - t.z * 20));
+				add(t);
+				row3.x += 1;
+			}
+			
+			Row row4 = new Row(5,4);
+			row4.addTiles(deck, 4);
+			for (Tile t: row4) {
+				model.positionTile(t, row4.x, row4.y, 2);
+				t.setLocation((row4.x * 70 + t.z * 20), (row4.y * 70 - t.z * 20));
+				add(t);
+				row4.x += 1;
+			}
+			
+			Row row5 = new Row(5,3);
+			row5.addTiles(deck, 4);
+			for (Tile t: row5) {
+				model.positionTile(t, row5.x, row5.y, 2);
+				t.setLocation((row5.x * 70 + t.z * 20), (row5.y * 70 - t.z * 20));
+				add(t);
+				row5.x += 1;
+			}
+			
+			Row row6 = new Row(5,2);
+			row6.addTiles(deck, 4);
+			for (Tile t: row6) {
+				model.positionTile(t, row6.x, row6.y, 2);
+				t.setLocation((row6.x * 70 + t.z * 20), (row6.y * 70 - t.z * 20));
+				add(t);
+				row6.x += 1;
+			}
+			
+	//----------------------Special Cases------------------------//	
+			Tile spec = deck.remove(deck.size() - 1);
+			model.positionTile(spec, 0, 4, 1);
+			spec.setLocation((spec.x * 70 + spec.z * 20) - 20, (spec.y * 70 - spec.z * 20) - 20);
+			add(spec);
+			
+			
+	//----------------------Layer 1------------------------//
+			Row row7 = new Row(4,6);
+			row7.addTiles(deck, 6);
+			for (Tile t: row7) {
+				model.positionTile(t, row7.x, row7.y, 1);
+				t.setLocation((row7.x * 70 + t.z * 20), (row7.y * 70 - t.z * 20));
+				add(t);
+				row7.x += 1;
+			}
+			
+			Row row8 = new Row(4,5);
+			row8.addTiles(deck, 6);
+			for (Tile t: row8) {
+				model.positionTile(t, row8.x, row8.y, 1);
+				t.setLocation((row8.x * 70 + t.z * 20), (row8.y * 70 - t.z * 20));
+				add(t);
+				row8.x += 1;
+			}
+			
+			Row row9 = new Row(4,4);
+			row9.addTiles(deck, 6);
+			for (Tile t: row9) {
+				model.positionTile(t, row9.x, row9.y, 1);
+				t.setLocation((row9.x * 70 + t.z * 20), (row9.y * 70 - t.z * 20));
+				add(t);
+				row9.x += 1;
+			}
+			
+			Row row10 = new Row(4,3);
+			row10.addTiles(deck, 6);
+			for (Tile t: row10) {
+				model.positionTile(t, row10.x, row10.y, 1);
+				t.setLocation((row10.x * 70 + t.z * 20), (row10.y * 70 - t.z * 20));
+				add(t);
+				row10.x += 1;
+			}
+			
+			Row row11 = new Row(4,2);
+			row11.addTiles(deck, 6);
+			for (Tile t: row11) {
+				model.positionTile(t, row11.x, row11.y, 1);
+				t.setLocation((row11.x * 70 + t.z * 20), (row11.y * 70 - t.z * 20));
+				add(t);
+				row11.x += 1;
+			}
+			
+			Row row12 = new Row(4,1);
+			row12.addTiles(deck, 6);
+			for (Tile t: row12) {
+				model.positionTile(t, row12.x, row12.y, 1);
+				t.setLocation((row12.x * 70 + t.z * 20), (row12.y * 70 - t.z * 20));
+				add(t);
+				row12.x += 1;
+			}
+			
+			
+	//----------------------Layer 0------------------------//
+			Layer layer0 = new Layer(deck);
+			for (Row r : layer0) {
+				for (Tile t: r) {
+					add(t);
+				}
+			}
+			
+		}
+
+		@Override
+		public void mouseClicked(MouseEvent e) {}
+
+		@Override
+		public void mousePressed(MouseEvent e) {
+			Tile t = (Tile)e.getSource();
+			
+			if (e.getButton() == MouseEvent.BUTTON3) {
+				remove(t);
+			}
+
+		}
+
+		@Override
+		public void mouseReleased(MouseEvent e) {}
+
+		@Override
+		public void mouseEntered(MouseEvent e) {}
+
+		@Override
+		public void mouseExited(MouseEvent e) {}
 
 	}
 

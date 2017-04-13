@@ -33,7 +33,7 @@ public class MahJong extends JFrame {
 			tileDeck();
 			Collections.shuffle(deck, rand);
 			dealTiles();
-			
+
 		}
 
 		public void paintComponent(Graphics g) {
@@ -51,6 +51,7 @@ public class MahJong extends JFrame {
 			Tile top = deck.remove(deck.size() - 1);
 			model.positionTile(top, 7, 4, 4);
 			top.setLocation((top.x * 70 + top.z * 20) - 40, (top.y * 70 - top.z * 20) - 30);
+			top.addMouseListener(this);
 			add(top);
 			
 	//----------------------Layer 3------------------------//
@@ -59,6 +60,7 @@ public class MahJong extends JFrame {
 			for (Tile t: row1) {
 				model.positionTile(t, row1.x, row1.y, 3);
 				t.setLocation((row1.x * 70 + t.z * 20), (row1.y * 70 - t.z * 20));
+				t.addMouseListener(this);
 				add(t);
 				row1.x += 1;
 			}
@@ -68,6 +70,7 @@ public class MahJong extends JFrame {
 			for (Tile t: row2) {
 				model.positionTile(t, row2.x, row2.y, 3);
 				t.setLocation((row2.x * 70 + t.z * 20), (row2.y * 70 - t.z * 20));
+				t.addMouseListener(this);
 				add(t);
 				row2.x += 1;
 			}
@@ -78,6 +81,7 @@ public class MahJong extends JFrame {
 			for (Tile t: row3) {
 				model.positionTile(t, row3.x, row3.y, 2);
 				t.setLocation((row3.x * 70 + t.z * 20), (row3.y * 70 - t.z * 20));
+				t.addMouseListener(this);
 				add(t);
 				row3.x += 1;
 			}
@@ -87,6 +91,7 @@ public class MahJong extends JFrame {
 			for (Tile t: row4) {
 				model.positionTile(t, row4.x, row4.y, 2);
 				t.setLocation((row4.x * 70 + t.z * 20), (row4.y * 70 - t.z * 20));
+				t.addMouseListener(this);
 				add(t);
 				row4.x += 1;
 			}
@@ -96,6 +101,7 @@ public class MahJong extends JFrame {
 			for (Tile t: row5) {
 				model.positionTile(t, row5.x, row5.y, 2);
 				t.setLocation((row5.x * 70 + t.z * 20), (row5.y * 70 - t.z * 20));
+				t.addMouseListener(this);
 				add(t);
 				row5.x += 1;
 			}
@@ -105,6 +111,7 @@ public class MahJong extends JFrame {
 			for (Tile t: row6) {
 				model.positionTile(t, row6.x, row6.y, 2);
 				t.setLocation((row6.x * 70 + t.z * 20), (row6.y * 70 - t.z * 20));
+				t.addMouseListener(this);
 				add(t);
 				row6.x += 1;
 			}
@@ -113,6 +120,7 @@ public class MahJong extends JFrame {
 			Tile spec = deck.remove(deck.size() - 1);
 			model.positionTile(spec, 0, 4, 1);
 			spec.setLocation((spec.x * 70 + spec.z * 20) - 20, (spec.y * 70 - spec.z * 20) - 20);
+			spec.addMouseListener(this);
 			add(spec);
 			
 			
@@ -122,6 +130,7 @@ public class MahJong extends JFrame {
 			for (Tile t: row7) {
 				model.positionTile(t, row7.x, row7.y, 1);
 				t.setLocation((row7.x * 70 + t.z * 20), (row7.y * 70 - t.z * 20));
+				t.addMouseListener(this);
 				add(t);
 				row7.x += 1;
 			}
@@ -131,6 +140,7 @@ public class MahJong extends JFrame {
 			for (Tile t: row8) {
 				model.positionTile(t, row8.x, row8.y, 1);
 				t.setLocation((row8.x * 70 + t.z * 20), (row8.y * 70 - t.z * 20));
+				t.addMouseListener(this);
 				add(t);
 				row8.x += 1;
 			}
@@ -140,6 +150,7 @@ public class MahJong extends JFrame {
 			for (Tile t: row9) {
 				model.positionTile(t, row9.x, row9.y, 1);
 				t.setLocation((row9.x * 70 + t.z * 20), (row9.y * 70 - t.z * 20));
+				t.addMouseListener(this);
 				add(t);
 				row9.x += 1;
 			}
@@ -149,6 +160,7 @@ public class MahJong extends JFrame {
 			for (Tile t: row10) {
 				model.positionTile(t, row10.x, row10.y, 1);
 				t.setLocation((row10.x * 70 + t.z * 20), (row10.y * 70 - t.z * 20));
+				t.addMouseListener(this);
 				add(t);
 				row10.x += 1;
 			}
@@ -158,6 +170,7 @@ public class MahJong extends JFrame {
 			for (Tile t: row11) {
 				model.positionTile(t, row11.x, row11.y, 1);
 				t.setLocation((row11.x * 70 + t.z * 20), (row11.y * 70 - t.z * 20));
+				t.addMouseListener(this);
 				add(t);
 				row11.x += 1;
 			}
@@ -167,6 +180,7 @@ public class MahJong extends JFrame {
 			for (Tile t: row12) {
 				model.positionTile(t, row12.x, row12.y, 1);
 				t.setLocation((row12.x * 70 + t.z * 20), (row12.y * 70 - t.z * 20));
+				t.addMouseListener(this);
 				add(t);
 				row12.x += 1;
 			}
@@ -176,6 +190,7 @@ public class MahJong extends JFrame {
 			Layer layer0 = new Layer(deck);
 			for (Row r : layer0) {
 				for (Tile t: r) {
+					t.addMouseListener(this);
 					add(t);
 				}
 			}
@@ -189,10 +204,12 @@ public class MahJong extends JFrame {
 		public void mousePressed(MouseEvent e) {
 			Tile t = (Tile)e.getSource();
 			
-			if (e.getButton() == MouseEvent.BUTTON3) {
+			if (e.getButton() == MouseEvent.BUTTON1) {
+				t.removeMouseListener(this);
 				remove(t);
+				repaint();
 			}
-
+			
 		}
 
 		@Override
@@ -259,4 +276,5 @@ public class MahJong extends JFrame {
 	public static void main(String[] args) {
 		new MahJong();
 	}
+
 }

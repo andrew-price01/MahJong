@@ -17,16 +17,16 @@ public class FlowerTile extends PictureTile {
 		
 		switch (name) {
 			case "Chrysanthemum":
-				g.drawImage(chrysanthemum, 35, 20, this);
+				g.drawImage(chrysanthemum, 25, 10, this);
 				break;
 			case "Orchid":
-				g.drawImage(orchid, 35, 15, this);
+				g.drawImage(orchid, 25, 5, this);
 				break;
 			case "Plum":
-				g.drawImage(plum, 35, 15, this);
+				g.drawImage(plum, 25, 5, this);
 				break;
 			case "Sparrow":
-				g.drawImage(sparrow, 35, 20, this);
+				g.drawImage(sparrow, 25, 10, this);
 				break;
 		}
 	}

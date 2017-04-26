@@ -18,16 +18,16 @@ public class SeasonTile extends PictureTile {
 		
 		switch (name) {
 			case "Spring":
-				g.drawImage(spring, 35, 25, this);
+				g.drawImage(spring, 25, 15, this);
 				break;
 			case "Summer":
-				g.drawImage(summer, 35, 15, this);
+				g.drawImage(summer, 25, 5, this);
 				break;
 			case "Fall":
-				g.drawImage(fall, 35, 15, this);
+				g.drawImage(fall, 25, 5, this);
 				break;
 			case "Winter":
-				g.drawImage(winter, 35, 15, this);
+				g.drawImage(winter, 25, 5, this);
 				break;
 		}
 	}

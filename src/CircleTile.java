@@ -11,67 +11,67 @@ public class CircleTile extends RankTile {
 		
 		switch (rank) {
 			case 1:
-				circles[0] = new Pancake(58, 40, Color.RED);
+				circles[0] = new Pancake(50, 30, Color.RED);
 				break;
 			case 2:
-				circles[0] = new Circle(60, 27, Tile.Green);
-				circles[1] = new Circle(60, 54, Color.RED);
+				circles[0] = new Circle(50, 15, Tile.Green);
+				circles[1] = new Circle(50, 45, Color.RED);
 				break;
 			case 3:
-				circles[0] = new Circle(38, 15, Color.BLUE);
-				circles[1] = new Circle(58, 40, Color.RED);
-				circles[2] = new Circle(83, 62, Tile.Green);
+				circles[0] = new Circle(25, 2, Color.BLUE);
+				circles[1] = new Circle(50, 30, Color.RED);
+				circles[2] = new Circle(75, 55, Tile.Green);
 				break;
 			case 4:
-				circles[0] = new Circle(45, 27, Color.BLUE);
-				circles[1] = new Circle(75, 27, Tile.Green);
-				circles[2] = new Circle(45, 54,Tile.Green);
-				circles[3] = new Circle(75, 54, Color.BLUE);
+				circles[0] = new Circle(35, 15, Color.BLUE);
+				circles[1] = new Circle(65, 15, Tile.Green);
+				circles[2] = new Circle(35, 42,Tile.Green);
+				circles[3] = new Circle(65, 42, Color.BLUE);
 				break;
 			case 5:
-				circles[0] = new Circle(58, 40, Color.RED);
-				circles[1] = new Circle(38, 15, Color.BLUE);
-				circles[2] = new Circle(80, 62, Color.BLUE);
-				circles[3] = new Circle(80, 15, Tile.Green);
-				circles[4] = new Circle(38, 62, Tile.Green);
+				circles[0] = new Circle(50, 30, Color.RED);
+				circles[1] = new Circle(25, 2, Color.BLUE);
+				circles[2] = new Circle(75, 55, Color.BLUE);
+				circles[3] = new Circle(75, 2, Tile.Green);
+				circles[4] = new Circle(25, 55, Tile.Green);
 				break;
 			case 6:
-				circles[0] = new Circle(45, 15, Tile.Green);
-				circles[1] = new Circle(75, 15, Tile.Green);
-				circles[2] = new Circle(45, 39, Color.RED);
-				circles[3] = new Circle(75, 39, Color.RED);
-				circles[4] = new Circle(45, 62, Color.RED);
-				circles[5] = new Circle(75, 62, Color.RED);
+				circles[0] = new Circle(35, 5, Tile.Green);
+				circles[1] = new Circle(65, 5, Tile.Green);
+				circles[2] = new Circle(35, 29, Color.RED);
+				circles[3] = new Circle(65, 29, Color.RED);
+				circles[4] = new Circle(35, 52, Color.RED);
+				circles[5] = new Circle(65, 52, Color.RED);
 				break;
 			case 7:
-				circles[0] = new Circle(40, 15, Tile.Green);
-				circles[1] = new Circle(60, 23, Tile.Green);
-				circles[2] = new Circle(80, 31, Tile.Green);
-				circles[3] = new Circle(45, 46, Color.RED);
-				circles[4] = new Circle(45, 63, Color.RED);
-				circles[5] = new Circle(75, 46, Color.RED);
-				circles[6] = new Circle(75, 63, Color.RED);
+				circles[0] = new Circle(30, 5, Tile.Green);
+				circles[1] = new Circle(50, 13, Tile.Green);
+				circles[2] = new Circle(70, 21, Tile.Green);
+				circles[3] = new Circle(35, 36, Color.RED);
+				circles[4] = new Circle(35, 53, Color.RED);
+				circles[5] = new Circle(65, 36, Color.RED);
+				circles[6] = new Circle(65, 53, Color.RED);
 				break;
 			case 8:
-				circles[0] = new Circle(45, 12, Color.BLUE);
-				circles[1] = new Circle(45, 29, Color.BLUE);
-				circles[2] = new Circle(45, 47, Color.BLUE);
-				circles[3] = new Circle(45, 65, Color.BLUE);
-				circles[4] = new Circle(75, 12, Color.BLUE);
-				circles[5] = new Circle(75, 29, Color.BLUE);
-				circles[6] = new Circle(75, 47, Color.BLUE);
-				circles[7] = new Circle(75, 65, Color.BLUE);
+				circles[0] = new Circle(35, 2, Color.BLUE);
+				circles[1] = new Circle(35, 19, Color.BLUE);
+				circles[2] = new Circle(35, 37, Color.BLUE);
+				circles[3] = new Circle(35, 55, Color.BLUE);
+				circles[4] = new Circle(65, 2, Color.BLUE);
+				circles[5] = new Circle(65, 19, Color.BLUE);
+				circles[6] = new Circle(65, 37, Color.BLUE);
+				circles[7] = new Circle(65, 55, Color.BLUE);
 				break;
 			case 9:
-				circles[0] = new Circle(40, 15, Tile.Green);
-				circles[1] = new Circle(58, 15, Tile.Green);
-				circles[2] = new Circle(80, 15, Tile.Green);
-				circles[3] = new Circle(40, 40, Color.RED);
-				circles[4] = new Circle(58, 40, Color.RED);
-				circles[5] = new Circle(80, 40, Color.RED);
-				circles[6] = new Circle(40, 62, Color.BLUE);
-				circles[7] = new Circle(58, 62, Color.BLUE);
-				circles[8] = new Circle(80, 62, Color.BLUE);
+				circles[0] = new Circle(25, 5, Tile.Green);
+				circles[1] = new Circle(48, 5, Tile.Green);
+				circles[2] = new Circle(70, 5, Tile.Green);
+				circles[3] = new Circle(25, 27, Color.RED);
+				circles[4] = new Circle(48, 27, Color.RED);
+				circles[5] = new Circle(70, 27, Color.RED);
+				circles[6] = new Circle(25, 50, Color.BLUE);
+				circles[7] = new Circle(48, 50, Color.BLUE);
+				circles[8] = new Circle(70, 50, Color.BLUE);
 				break;
 		}
 		

@@ -43,18 +43,18 @@ public class CharacterTile extends AbstractCharacterTile {
 		
 		// Labels Top Right Corner
 		g.setColor(Color.RED);
-		g.drawString(Character.toString(symbol), 85, 25);
+		g.drawString(Character.toString(symbol), 75, 15);
 		
 		
 		// Symbols 1 - 9
 		if (symbol >= '1' && symbol <= '9') {
 			g.setFont(new Font("TimesRoman", Font.PLAIN, 25));
-			g.drawString(chineseCharacters.get("wan"), 50, 70);
+			g.drawString(chineseCharacters.get("wan"), 45, 60);
 			
 			g.setColor(Color.BLACK);
 			g.setFont(new Font("TimesRoman", Font.PLAIN, 27));
 			//g.drawString(character, (getWidth() - width) / 2, (getHeight() / 2) - 15);
-			g.drawString(character, 50, 40);
+			g.drawString(character, 45, 35);
 		}
 		
 		// Symbol C
@@ -62,7 +62,7 @@ public class CharacterTile extends AbstractCharacterTile {
 			g.setColor(Color.RED);
 			g.setFont(new Font("TimesRoman", Font.PLAIN, 50));
 			//g.drawString(character, (getWidth() - width - 20) / 2, (getHeight() / 2) + 12);
-			g.drawString(character, 40, 60);
+			g.drawString(character, 30, 55);
 		}
 		
 		// Symbol F
@@ -70,7 +70,7 @@ public class CharacterTile extends AbstractCharacterTile {
 			g.setColor(Tile.LightGreen);
 			g.setFont(new Font("TimesRoman", Font.PLAIN, 50));
 			//g.drawString(character, (getWidth() - width - 20) / 2, (getHeight() / 2) + 12);
-			g.drawString(character, 40, 65);
+			g.drawString(character, 30, 55);
 		}
 		
 		// Symbols North, East, South, West
@@ -78,7 +78,7 @@ public class CharacterTile extends AbstractCharacterTile {
 			g.setColor(Color.BLACK);
 			g.setFont(new Font("TimesRoman", Font.PLAIN, 50));
 			//g.drawString(character, (getWidth() - width - 20) / 2, (getHeight() / 2) + 12);
-			g.drawString(character, 40, 65);
+			g.drawString(character, 30, 55);
 		}
 		
 		

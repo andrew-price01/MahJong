@@ -2,10 +2,10 @@ import java.awt.*;
 import javax.swing.*;
 
 public class Tile extends JPanel {
-	
-	public int x = 0;
-	public int y = 0;
-	public int z = 0;
+
+	public int x;
+	public int y;
+	public int z;
 	
 	// Colors
 	public final static Color DarkGreen = new Color(0, 100, 0);
@@ -17,21 +17,21 @@ public class Tile extends JPanel {
 	public final static Color Gold = new Color(255, 215, 0);
 
 	// Polygon Points
-	private static int[] xMidEdge = { 20, 20, 30, 30 };
-	private static int[] yMidEdge = { 90, 20, 10, 80 };
-	private static int[] xOutEdge = { 10, 10, 20, 20 };
-	private static int[] yOutEdge = { 100, 30, 20, 90 };
-	private static int[] xMidBottom = { 20, 30, 100, 90 };
-	private static int[] yMidBottom = { 90, 80, 80, 90 };
-	private static int[] xOutBottom = { 10, 20, 90, 80 };
-	private static int[] yOutBottom = { 100, 90, 90, 100 };
+	private static int[] xMidEdge = { 10, 10, 20, 20 };
+	private static int[] yMidEdge = { 80, 10, 0, 70 };
+	private static int[] xOutEdge = { 0, 0, 10, 10 };
+	private static int[] yOutEdge = { 90, 20, 10, 80 };
+	private static int[] xMidBottom = { 10, 20, 90, 80 };
+	private static int[] yMidBottom = { 80, 70, 70, 80 };
+	private static int[] xOutBottom = { 0, 10, 80, 70 };
+	private static int[] yOutBottom = { 90, 80, 80, 90 };
 	
 	public Tile() {
-		setSize(1200,650);
+		setSize(95, 100);
 		setOpaque(false);
 		setPreferredSize(new Dimension(110, 110));
 	}
-
+	
 	public boolean matches(Tile other) {
 		Tile otherObject = (Tile) other;
 
@@ -53,13 +53,13 @@ public class Tile extends JPanel {
 		
 		GradientPaint face = new GradientPaint(70, 10, Wheat, 10, 60, Color.WHITE);
 		g2.setPaint(face);
-		g.fillRect(30, 10, 70, 70);
+		g.fillRect(20, 0, 70, 70);
 		g.fillPolygon(xMidBottom, yMidBottom, 4);
 		g.fillPolygon(xMidEdge, yMidEdge, 4);
 		
 		
 		g2.setPaint(Color.BLACK);
-		g.drawRect(30, 10, 70, 70);
+		g.drawRect(20, 0, 70, 70);
 
 		g.drawPolygon(xMidBottom, yMidBottom, 4);
 		g.drawPolygon(xOutBottom, yOutBottom, 4);
@@ -70,7 +70,7 @@ public class Tile extends JPanel {
 
 	public static void main(String[] args) {
 		JFrame frame = new JFrame();
-
+		
 		frame.setLayout(new FlowLayout());
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setTitle("Tile");

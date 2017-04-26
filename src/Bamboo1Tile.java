@@ -17,7 +17,7 @@ public class Bamboo1Tile extends PictureTile {
 
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		g.drawImage(bamboo1, 40, 15, this);
+		g.drawImage(bamboo1, 30, 5, this);
 	}
 
 	public static void main(String[] args) {

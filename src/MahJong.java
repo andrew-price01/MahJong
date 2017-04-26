@@ -17,6 +17,7 @@ public class MahJong extends JFrame {
 
 	Random rand = new Random();
 
+	
 	public MahJong() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("MahJong Game");
@@ -185,7 +186,6 @@ public class MahJong extends JFrame {
 				row12.x += 1;
 			}
 			
-			
 	//----------------------Layer 0------------------------//
 			Layer layer0 = new Layer(deck);
 			for (Row r : layer0) {
@@ -203,8 +203,8 @@ public class MahJong extends JFrame {
 		@Override
 		public void mousePressed(MouseEvent e) {
 			Tile t = (Tile)e.getSource();
-			
-			if (e.getButton() == MouseEvent.BUTTON1) {
+		
+			if (model.isTileOpen(t)) {
 				t.removeMouseListener(this);
 				remove(t);
 				repaint();

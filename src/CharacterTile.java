@@ -39,7 +39,7 @@ public class CharacterTile extends AbstractCharacterTile {
 		super.paintComponent(g);
 	
 		FontMetrics fontMetrics = g.getFontMetrics();
-		int width = fontMetrics.stringWidth(character);
+		//int width = fontMetrics.stringWidth(character);
 		
 		// Labels Top Right Corner
 		g.setColor(Color.RED);

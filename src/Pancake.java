@@ -1,5 +1,4 @@
 import java.awt.*;
-import javax.swing.*;
 
 public class Pancake extends Circle {
 	

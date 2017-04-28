@@ -7,6 +7,8 @@ public class Tile extends JPanel {
 	public int y;
 	public int z;
 	
+	public boolean tileRemoved = false;
+	
 	// Colors
 	public final static Color DarkGreen = new Color(0, 100, 0);
 	public final static Color LightGreen = new Color(0, 255, 0);
@@ -27,7 +29,7 @@ public class Tile extends JPanel {
 	private static int[] yOutBottom = { 90, 80, 80, 90 };
 	
 	public Tile() {
-		setSize(95, 100);
+		setSize(92, 92);
 		setOpaque(false);
 		setPreferredSize(new Dimension(110, 110));
 	}

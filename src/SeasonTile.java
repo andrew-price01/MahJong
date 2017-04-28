@@ -3,7 +3,7 @@ import javax.swing.*;
 @SuppressWarnings("serial")
 public class SeasonTile extends PictureTile {
 	
-	private ImageIcon springIcon = new ImageIcon(getClass().getResource("Chrysanthemum.png"));
+	private ImageIcon springIcon = new ImageIcon(getClass().getResource("Spring.png"));
 	private Image spring = springIcon.getImage();
 	//private Image spring = Toolkit.getDefaultToolkit().getImage("images/Spring.png");
 	

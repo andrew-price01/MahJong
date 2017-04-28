@@ -1,6 +1,6 @@
 import java.awt.*;
 import javax.swing.*;
-
+@SuppressWarnings("serial")
 public class CircleTile extends RankTile {
 	
 	final Circle circles[] = new Circle[9];

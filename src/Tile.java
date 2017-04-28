@@ -1,6 +1,6 @@
 import java.awt.*;
 import javax.swing.*;
-
+@SuppressWarnings("serial")
 public class Tile extends JPanel {
 
 	public int x;

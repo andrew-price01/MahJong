@@ -1,7 +1,7 @@
 import java.awt.*;
 import java.util.HashMap;
 import javax.swing.*;
-
+@SuppressWarnings("serial")
 public class CharacterTile extends AbstractCharacterTile {
 	
 	protected static HashMap<String, String> chineseCharacters = new HashMap<String, String>();
@@ -38,7 +38,7 @@ public class CharacterTile extends AbstractCharacterTile {
 		
 		super.paintComponent(g);
 	
-		FontMetrics fontMetrics = g.getFontMetrics();
+		//FontMetrics fontMetrics = g.getFontMetrics();
 		//int width = fontMetrics.stringWidth(character);
 		
 		// Labels Top Right Corner

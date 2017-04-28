@@ -1,6 +1,5 @@
 import java.util.*;
-import java.awt.*;
-
+@SuppressWarnings("serial")
 public class Row extends ArrayList<Tile> {
 	
 	ArrayList<Tile> deck;

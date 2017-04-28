@@ -1,12 +1,23 @@
 import java.awt.*;
 import javax.swing.*;
-
+@SuppressWarnings("serial")
 public class SeasonTile extends PictureTile {
 	
-	private Image spring = Toolkit.getDefaultToolkit().getImage("images/Spring.png");
-	private Image summer = Toolkit.getDefaultToolkit().getImage("images/Summer.png");
-	private Image fall = Toolkit.getDefaultToolkit().getImage("images/Fall.png");
-	private Image winter = Toolkit.getDefaultToolkit().getImage("images/Winter.png");
+	private ImageIcon springIcon = new ImageIcon(getClass().getResource("Chrysanthemum.png"));
+	private Image spring = springIcon.getImage();
+	//private Image spring = Toolkit.getDefaultToolkit().getImage("images/Spring.png");
+	
+	private ImageIcon summerIcon = new ImageIcon(getClass().getResource("Summer.png"));
+	private Image summer = summerIcon.getImage();
+	//private Image summer = Toolkit.getDefaultToolkit().getImage("images/Summer.png");
+	
+	private ImageIcon fallIcon = new ImageIcon(getClass().getResource("Fall.png"));
+	private Image fall = fallIcon.getImage();
+	//private Image fall = Toolkit.getDefaultToolkit().getImage("images/Fall.png");
+	
+	private ImageIcon winterIcon = new ImageIcon(getClass().getResource("Winter.png"));
+	private Image winter = winterIcon.getImage();
+	//private Image winter = Toolkit.getDefaultToolkit().getImage("images/Winter.png");
 	
 	public SeasonTile(String name) {
 		super(name);

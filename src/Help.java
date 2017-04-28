@@ -4,9 +4,8 @@ import java.net.*;
 import java.io.*;
 import java.util.*;
 import javax.swing.*;
-import javax.swing.text.*;
 import javax.swing.event.*;
-
+@SuppressWarnings("serial")
 
 /**
  * Implements a generalized system for displaying instructions or help files written in HTML.
@@ -214,7 +213,7 @@ public class Help extends JPanel implements HyperlinkListener
 	{
 		try
 		{
-			Document doc = text.getDocument();
+			//Document doc = text.getDocument();
 			text.setEditable(false);
 
 			currentURL = Help.class.getResource(file);

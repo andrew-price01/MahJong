@@ -1,12 +1,23 @@
 import java.awt.*;
 import javax.swing.*;
-
+@SuppressWarnings("serial")
 public class FlowerTile extends PictureTile {
 	
-	private Image chrysanthemum = Toolkit.getDefaultToolkit().getImage("images/Chrysanthemum.png");
-	private Image orchid = Toolkit.getDefaultToolkit().getImage("images/Orchid.png");
-	private Image plum = Toolkit.getDefaultToolkit().getImage("images/Plum.png");
-	private Image sparrow = Toolkit.getDefaultToolkit().getImage("images/Sparrow.png");
+	private ImageIcon chrysIcon = new ImageIcon(getClass().getResource("Chrysanthemum.png"));
+	private Image chrysanthemum = chrysIcon.getImage();
+	//private Image chrysanthemum = Toolkit.getDefaultToolkit().getImage("images/Chrysanthemum.png");
+	
+	private ImageIcon orchidIcon = new ImageIcon(getClass().getResource("Orchid.png"));
+	private Image orchid = orchidIcon.getImage();
+	//private Image orchid = Toolkit.getDefaultToolkit().getImage("images/Orchid.png");
+	
+	private ImageIcon plumIcon = new ImageIcon(getClass().getResource("Plum.png"));
+	private Image plum = plumIcon.getImage();
+	//private Image plum = Toolkit.getDefaultToolkit().getImage("images/Plum.png");
+	
+	private ImageIcon sparrowIcon = new ImageIcon(getClass().getResource("Sparrow.png"));
+	private Image sparrow = sparrowIcon.getImage();
+	//private Image sparrow = Toolkit.getDefaultToolkit().getImage("images/Sparrow.png");
 	
 	public FlowerTile(String name) {
 		super(name);
@@ -18,6 +29,7 @@ public class FlowerTile extends PictureTile {
 		switch (name) {
 			case "Chrysanthemum":
 				g.drawImage(chrysanthemum, 25, 10, this);
+				//chrysanthemum.paintIcon(this, g, 25, 10);
 				break;
 			case "Orchid":
 				g.drawImage(orchid, 25, 5, this);

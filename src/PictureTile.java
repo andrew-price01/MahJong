@@ -3,6 +3,10 @@ import javax.swing.*;
 
 public abstract class PictureTile extends Tile {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	protected String name;
 
 	public PictureTile(String name) {

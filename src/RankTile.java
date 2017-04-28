@@ -1,4 +1,4 @@
-
+@SuppressWarnings("serial")
 public abstract class RankTile extends Tile{
 	
 	protected int rank;

@@ -7,24 +7,28 @@ import java.awt.event.WindowEvent;
 import java.util.*;
 import javax.swing.*;
 import javax.swing.border.*;
-
+@SuppressWarnings("serial")
 public class MahJong extends JFrame {
 
 	MahJongModel model = new MahJongModel();
 	Random rand;
-	long seed;
-	private Image dragon_bg = Toolkit.getDefaultToolkit().getImage("images/dragon_bg.png");
+	private long seed;
+	private int scoreCount;
+	private Fireworks reward;
+	private ImageIcon dragonImg = new ImageIcon(getClass().getResource("dragon_bg.png"));
+	private Image dragon_bg = dragonImg.getImage();
+	//private Image dragon_bg = Toolkit.getDefaultToolkit().getImage("images/dragon_bg.png");
 	private Tile first = null;
 	private Tile second = null;
 	private Border selected = BorderFactory.createLineBorder(Color.YELLOW, 5);
-	private PlayClip clip = new PlayClip("/audio/stone-scraping.wav", true);
+	private PlayClip clip = new PlayClip("audio/stone-scraping.wav", true);
 	private JLabel gameNumber = new JLabel();
 	public ArrayList<Tile> deck = new ArrayList<Tile>();
 	public ArrayList<Tile> gameTiles = new ArrayList<Tile>();
 	public ArrayList<Tile> removedList = new ArrayList<Tile>();
 
 	public MahJong() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 
 		addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
@@ -40,10 +44,10 @@ public class MahJong extends JFrame {
 		setVisible(true);
 	}
 
-	public void exit() {
-		if (JOptionPane.showConfirmDialog(this, "Do you want to end this program?", "End Program",
-				JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == JOptionPane.OK_OPTION)
-			System.exit(0);
+	private void exit() {
+		if (JOptionPane.showConfirmDialog(this, "Exit Program?", "Confirm Exit", JOptionPane.YES_NO_OPTION) 
+				== JOptionPane.YES_OPTION)
+				System.exit(0);
 	}
 
 	public class MahJongBoard extends JPanel implements MouseListener {
@@ -66,29 +70,36 @@ public class MahJong extends JFrame {
 
 			JMenu removedMenu = new JMenu("Removed Tiles");
 			menuBar.add(removedMenu);
+			
+			JMenu hintMenu = new JMenu("Hint");
+			menuBar.add(hintMenu);
 
 			JMenu helpMenu = new JMenu("Help");
 			menuBar.add(helpMenu);
 
 			Action playAction = new AbstractAction("New Game") {
+
 				public void actionPerformed(ActionEvent e) {
 					newGame();
 				}
 			};
 
 			Action restartAction = new AbstractAction("Restart") {
+
 				public void actionPerformed(ActionEvent e) {
 					restartGame();
 				}
 			};
 
 			Action numberedAction = new AbstractAction("Play (Game Number)") {
+
 				public void actionPerformed(ActionEvent e) {
 					numberGame();
 				}
 			};
 
 			Action onAction = new AbstractAction("On") {
+
 				public void actionPerformed(ActionEvent e) {
 					soundOn();
 				}
@@ -101,6 +112,7 @@ public class MahJong extends JFrame {
 			};
 
 			Action operationAction = new AbstractAction("Operations") {
+
 				public void actionPerformed(ActionEvent e) {
 					Help h = new Help("help/operations.html");
 					h.display();
@@ -108,6 +120,7 @@ public class MahJong extends JFrame {
 			};
 
 			Action rulesAction = new AbstractAction("Rules") {
+
 				public void actionPerformed(ActionEvent e) {
 					Help h = new Help("help/rules.html");
 					h.display();
@@ -115,8 +128,16 @@ public class MahJong extends JFrame {
 			};
 
 			Action removeAction = new AbstractAction("Removed") {
+
 				public void actionPerformed(ActionEvent e) {
 					removedTiles();
+				}
+			};
+			
+			Action hintAction = new AbstractAction("Hint") {
+
+				public void actionPerformed(ActionEvent e) {
+					//showHint();
 				}
 			};
 
@@ -128,7 +149,8 @@ public class MahJong extends JFrame {
 			JMenuItem operation = new JMenuItem(operationAction);
 			JMenuItem rules = new JMenuItem(rulesAction);
 			JMenuItem remove = new JMenuItem(removeAction);
-
+			JMenuItem hint = new JMenuItem(hintAction);
+			
 			gameMenu.add(newGame);
 			gameMenu.addSeparator();
 			gameMenu.add(restartGame);
@@ -144,6 +166,7 @@ public class MahJong extends JFrame {
 			helpMenu.add(rules);
 
 			removedMenu.add(remove);
+			hintMenu.add(hint);
 		}
 
 		public void paintComponent(Graphics g) {
@@ -167,17 +190,17 @@ public class MahJong extends JFrame {
 					}
 				}
 			}
-			panel.setPreferredSize(new Dimension(200, 2500));
+			panel.setPreferredSize(new Dimension(400, 4000));
 
 			JScrollPane scroll = new JScrollPane(panel);
 			scroll.setLayout(new ScrollPaneLayout());
-			scroll.setPreferredSize(new Dimension(200, 510));
+			scroll.setPreferredSize(new Dimension(400, 510));
 			scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
 			JDialog popUpContainer = new JDialog();
 			popUpContainer.setTitle("Removed Tiles");
 			popUpContainer.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-			popUpContainer.setBounds(1290, 0, 300, 700);
+			popUpContainer.setBounds(1290, 0, 400, 700);
 			popUpContainer.setLayout(new BorderLayout());
 
 			popUpContainer.add(scroll);
@@ -196,6 +219,7 @@ public class MahJong extends JFrame {
 						remove(t);
 					}
 				}
+				scoreCount = 0;
 				seed = System.currentTimeMillis() % 100000;
 				showNumber(seed);
 
@@ -221,6 +245,7 @@ public class MahJong extends JFrame {
 						remove(t);
 					}
 				}
+				scoreCount = 0;
 				tileDeck();
 				rand.setSeed(seed);
 				Collections.shuffle(deck, rand);
@@ -231,6 +256,8 @@ public class MahJong extends JFrame {
 		}
 
 		public void numberGame() {
+			scoreCount = 0;
+			
 			String[] buttons = { "New Game", "Numbered" };
 			int returnValue = JOptionPane.showOptionDialog(null, "Options", "Numbered Game", JOptionPane.PLAIN_MESSAGE,
 					0, null, buttons, buttons[0]);
@@ -247,7 +274,6 @@ public class MahJong extends JFrame {
 				}
 				seed = System.currentTimeMillis() % 100000;
 				showNumber(seed);
-
 				tileDeck();
 				rand.setSeed(seed);
 				Collections.shuffle(deck, rand);
@@ -472,6 +498,7 @@ public class MahJong extends JFrame {
 
 				if (first.matches(second)) {
 					clip.play(); // play sound
+					scoreCount += 2;
 					removedList.add(first);
 					first.tileRemoved = true;
 					second.tileRemoved = true;
@@ -501,6 +528,15 @@ public class MahJong extends JFrame {
 		@Override
 		public void mouseExited(MouseEvent e) {
 		}
+		
+		public void startReward() {
+			if (scoreCount < 144) {
+				return;
+			}
+			reward = new Fireworks(this);
+			//reward.setSound(sound);
+			reward.fire();
+		}
 
 		public void showNumber(long seed) {
 			gameNumber.setText("Game Number: " + seed);
@@ -509,6 +545,20 @@ public class MahJong extends JFrame {
 			add(gameNumber);
 		}
 
+		// public void showHint() {
+		// for (Tile t: gameTiles) {
+		// for (Tile r: gameTiles) {
+		// if (model.isTileOpen(t, gameTiles)) {
+		// if (model.isTileOpen(r, gameTiles)) {
+		// if (model.getTile(t.x, t.y, t.z, gameTiles).matches(r));
+		// model.getTile(t.x, t.y, t.z, gameTiles).setBorder(selected);
+		// r.setBorder(selected);
+		// return;
+		// }
+		// }
+		// }
+		// }
+		// }
 	}
 
 	public void tileDeck() {

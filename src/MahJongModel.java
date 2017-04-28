@@ -1,6 +1,4 @@
 import java.util.Collection;
-import java.util.StringTokenizer;
-
 public class MahJongModel {
 
 	Tile tile = new Tile();

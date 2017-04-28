@@ -1,6 +1,6 @@
 import java.awt.*;
 import javax.swing.*;
-
+@SuppressWarnings("serial")
 public class Bamboo1Tile extends PictureTile {
 
 	private Image bamboo1;
@@ -8,7 +8,9 @@ public class Bamboo1Tile extends PictureTile {
 	public Bamboo1Tile() {
 		super("Bamboo 1");
 
-		bamboo1 = Toolkit.getDefaultToolkit().getImage("images/Bamboo.png");
+		ImageIcon bambooIcon = new ImageIcon(getClass().getResource("Bamboo.png"));
+		bamboo1 = bambooIcon.getImage();
+//		bamboo1 = Toolkit.getDefaultToolkit().getImage("images/Bamboo.png");
 	}
 
 	public String toString() {

@@ -1,6 +1,6 @@
 import java.awt.*;
 import javax.swing.*;
-
+@SuppressWarnings("serial")
 public class BambooTile extends RankTile{
 	
 	final Bamboo[] bamboo = new Bamboo[9];

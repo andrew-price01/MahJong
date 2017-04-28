@@ -1,5 +1,5 @@
 import java.util.ArrayList;
-
+@SuppressWarnings("serial")
 public class Layer extends ArrayList<Row> {
 
 	MahJongModel model = new MahJongModel();

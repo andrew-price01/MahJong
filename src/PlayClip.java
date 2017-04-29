@@ -50,8 +50,8 @@ public class PlayClip implements LineListener
 	
 	public void play()
 	{
-		if (AudioSystem.isLineSupported(Port.Info.SPEAKER))
-		{
+		//if (AudioSystem.isLineSupported(Port.Info.SPEAKER))
+		//{
 			try
 			{
 				Clip			clip = null;		// the sound clip
@@ -87,7 +87,7 @@ public class PlayClip implements LineListener
 							JOptionPane.ERROR_MESSAGE);
 			}
 		}
-	}
+	//}
 
 
 

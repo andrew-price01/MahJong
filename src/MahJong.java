@@ -7,6 +7,7 @@ import java.awt.event.WindowEvent;
 import java.util.*;
 import javax.swing.*;
 import javax.swing.border.*;
+
 @SuppressWarnings("serial")
 public class MahJong extends JFrame {
 
@@ -17,10 +18,12 @@ public class MahJong extends JFrame {
 	private Fireworks reward;
 	private ImageIcon dragonImg = new ImageIcon(getClass().getResource("dragon_bg.png"));
 	private Image dragon_bg = dragonImg.getImage();
-	//private Image dragon_bg = Toolkit.getDefaultToolkit().getImage("images/dragon_bg.png");
+	// private Image dragon_bg =
+	// Toolkit.getDefaultToolkit().getImage("images/dragon_bg.png");
 	private Tile first = null;
 	private Tile second = null;
 	private Border selected = BorderFactory.createLineBorder(Color.YELLOW, 5);
+	private Border hint = BorderFactory.createLineBorder(Color.BLUE, 5);
 	private PlayClip clip = new PlayClip("audio/stone-scraping.wav", true);
 	private JLabel gameNumber = new JLabel();
 	public ArrayList<Tile> deck = new ArrayList<Tile>();
@@ -45,9 +48,9 @@ public class MahJong extends JFrame {
 	}
 
 	private void exit() {
-		if (JOptionPane.showConfirmDialog(this, "Exit Program?", "Confirm Exit", JOptionPane.YES_NO_OPTION) 
-				== JOptionPane.YES_OPTION)
-				System.exit(0);
+		if (JOptionPane.showConfirmDialog(this, "Exit Program?", "Confirm Exit",
+				JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
+			System.exit(0);
 	}
 
 	public class MahJongBoard extends JPanel implements MouseListener {
@@ -70,7 +73,7 @@ public class MahJong extends JFrame {
 
 			JMenu removedMenu = new JMenu("Removed Tiles");
 			menuBar.add(removedMenu);
-			
+
 			JMenu hintMenu = new JMenu("Hint");
 			menuBar.add(hintMenu);
 
@@ -114,7 +117,7 @@ public class MahJong extends JFrame {
 			Action operationAction = new AbstractAction("Operations") {
 
 				public void actionPerformed(ActionEvent e) {
-					Help h = new Help("help/operations.html");
+					Help h = new Help("help/operations.html", "Help");
 					h.display();
 				}
 			};
@@ -122,7 +125,7 @@ public class MahJong extends JFrame {
 			Action rulesAction = new AbstractAction("Rules") {
 
 				public void actionPerformed(ActionEvent e) {
-					Help h = new Help("help/rules.html");
+					Help h = new Help("help/rules.html", "Rules");
 					h.display();
 				}
 			};
@@ -130,14 +133,14 @@ public class MahJong extends JFrame {
 			Action removeAction = new AbstractAction("Removed") {
 
 				public void actionPerformed(ActionEvent e) {
-					removedTiles();
+					showRemovedTiles();
 				}
 			};
-			
+
 			Action hintAction = new AbstractAction("Hint") {
 
 				public void actionPerformed(ActionEvent e) {
-					//showHint();
+					 showHint();
 				}
 			};
 
@@ -150,7 +153,7 @@ public class MahJong extends JFrame {
 			JMenuItem rules = new JMenuItem(rulesAction);
 			JMenuItem remove = new JMenuItem(removeAction);
 			JMenuItem hint = new JMenuItem(hintAction);
-			
+
 			gameMenu.add(newGame);
 			gameMenu.addSeparator();
 			gameMenu.add(restartGame);
@@ -179,7 +182,7 @@ public class MahJong extends JFrame {
 
 		}
 
-		private void removedTiles() {
+		private void showRemovedTiles() {
 			JPanel panel = new JPanel();
 			panel.setLayout(new FlowLayout(FlowLayout.LEFT));
 
@@ -191,13 +194,14 @@ public class MahJong extends JFrame {
 				}
 			}
 			panel.setPreferredSize(new Dimension(400, 4000));
-
+			
 			JScrollPane scroll = new JScrollPane(panel);
 			scroll.setLayout(new ScrollPaneLayout());
 			scroll.setPreferredSize(new Dimension(400, 510));
 			scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
 			JDialog popUpContainer = new JDialog();
+			
 			popUpContainer.setTitle("Removed Tiles");
 			popUpContainer.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 			popUpContainer.setBounds(1290, 0, 400, 700);
@@ -257,7 +261,7 @@ public class MahJong extends JFrame {
 
 		public void numberGame() {
 			scoreCount = 0;
-			
+
 			String[] buttons = { "New Game", "Numbered" };
 			int returnValue = JOptionPane.showOptionDialog(null, "Options", "Numbered Game", JOptionPane.PLAIN_MESSAGE,
 					0, null, buttons, buttons[0]);
@@ -481,6 +485,7 @@ public class MahJong extends JFrame {
 
 		@Override
 		public void mousePressed(MouseEvent e) {
+
 			Tile t = (Tile) e.getSource();
 
 			if (model.isTileOpen(t, gameTiles)) {
@@ -494,25 +499,33 @@ public class MahJong extends JFrame {
 					return;
 				}
 
-				second = t;
+				second = t; // second tile clicked
 
-				if (first.matches(second)) {
-					clip.play(); // play sound
-					scoreCount += 2;
-					removedList.add(first);
-					first.tileRemoved = true;
-					second.tileRemoved = true;
+				try {
+					if (first.matches(second)) {
+						clip.play(); // play sound
+						scoreCount += 2;
+						removedList.add(first);
+						first.tileRemoved = true;
+						second.tileRemoved = true;
+						first.setBorder(null);
+						gameTiles.remove(first);
+						gameTiles.remove(second);
+						remove(first);
+						remove(second);
+						first = second = null;
+						repaint();
+						return;
+					}
+
 					first.setBorder(null);
-					remove(first);
-					remove(second);
-					first = second = null;
-					repaint();
+					first = second;
+					first.setBorder(selected);
+				} catch (Throwable error) {
+					first.setBorder(null);
+					first = second;
+					first.setBorder(selected);
 				}
-
-				first.setBorder(null);
-				first = second;
-				first.setBorder(selected);
-
 			}
 
 		}
@@ -528,7 +541,7 @@ public class MahJong extends JFrame {
 		@Override
 		public void mouseExited(MouseEvent e) {
 		}
-		
+
 		public void startReward() {
 			if (scoreCount < 144) {
 				return;
@@ -545,20 +558,13 @@ public class MahJong extends JFrame {
 			add(gameNumber);
 		}
 
-		// public void showHint() {
-		// for (Tile t: gameTiles) {
-		// for (Tile r: gameTiles) {
-		// if (model.isTileOpen(t, gameTiles)) {
-		// if (model.isTileOpen(r, gameTiles)) {
-		// if (model.getTile(t.x, t.y, t.z, gameTiles).matches(r));
-		// model.getTile(t.x, t.y, t.z, gameTiles).setBorder(selected);
-		// r.setBorder(selected);
-		// return;
-		// }
-		// }
-		// }
-		// }
-		// }
+		public void showHint() {
+			for (Tile t: gameTiles) {
+				if (model.isTileOpen(t, gameTiles)) {
+					t.setBorder(hint);
+				}
+			}
+		}
 	}
 
 	public void tileDeck() {

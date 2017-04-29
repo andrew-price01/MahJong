@@ -1,11 +1,18 @@
+/*
+ * Help.java
+ * Weber State University 
+ * CS 3230 - Dr. Brinkerhoff
+ */
+
 import java.awt.*;
 import java.awt.event.*;
-import java.net.*;
 import java.io.*;
+import java.net.*;
 import java.util.*;
 import javax.swing.*;
 import javax.swing.event.*;
-@SuppressWarnings("serial")
+import javax.swing.text.*;
+
 
 /**
  * Implements a generalized system for displaying instructions or help files written in HTML.
@@ -47,18 +54,18 @@ public class Help extends JPanel implements HyperlinkListener
 		this(file);
 
 		frame = new JFrame();
-		URL	url = Help.class.getResource("images/Help24.gif");
-		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(url));
+		//URL	url = Help.class.getResource("images/Help24.gif");
+		//frame.setIconImage(Toolkit.getDefaultToolkit().getImage(url));
 
 		frame.addWindowListener(new WindowAdapter()
 		{	public void windowClosing(WindowEvent event)
 				{ frame.setVisible(false); }
 		});
 
-//		JButton	close = ButtonFactory.makeImageButton("images/Stop24.gif", "Close the help system",
-//				"close", this, true);
-//
-//		controls.add(close);
+		//JButton	close = ButtonFactory.makeImageButton("images/Stop24.gif", "Close the help system",
+		//		"close", this, true);
+
+		//controls.add(close);
 
 		frame.add(this);
 
@@ -83,14 +90,6 @@ public class Help extends JPanel implements HyperlinkListener
 		readHTML(file);
 
 		add(controls, BorderLayout.SOUTH);
-
-//		back = ButtonFactory.makeImageButton("images/Back24.gif", "Return to the previous help page", "back", this, true);
-//		next = ButtonFactory.makeImageButton("images/Forward24.gif", "Goto the next help page", "forward", this, true);
-//
-//		controls.add(back);
-//		controls.add(next);
-		back.setEnabled(false);
-		next.setEnabled(false);
 	}
 
 
@@ -213,7 +212,7 @@ public class Help extends JPanel implements HyperlinkListener
 	{
 		try
 		{
-			//Document doc = text.getDocument();
+			Document doc = text.getDocument();
 			text.setEditable(false);
 
 			currentURL = Help.class.getResource(file);

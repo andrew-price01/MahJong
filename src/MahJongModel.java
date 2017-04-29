@@ -22,26 +22,26 @@ public class MahJongModel {
 		
 		// Right side special case tile
 		if (t.x == 12 && t.y == 4 && t.z == 0) {
-			if (getTile(13, 4, 0, gameTiles) != null && getTile(14, 4, 0, gameTiles) != null) {
-				return false;
+			if (getTile(13, 4, 0, gameTiles) == null && getTile(14, 4, 0, gameTiles) == null) {
+				return true;
 			}
 		}
 		// Right side special case tile
 		else if (t.x == 12 && t.y == 5 && t.z == 0) {
-			if (getTile(13, 4, 0, gameTiles) != null && getTile(14, 4, 0, gameTiles) != null) {
-				return false;
+			if (getTile(13, 4, 0, gameTiles) == null && getTile(14, 4, 0, gameTiles) == null) {
+				return true;
 			}
 		}
 		// Left side special case tile
 		else if (t.x == 1 && t.y == 4 && t.z == 0) {
-			if (getTile(0, 5, 1, gameTiles) != null) {
-				return false;
+			if (getTile(0, 5, 1, gameTiles) == null) {
+				return true;
 			}
 		}
 		// Left side special case tile
 		else if (t.x == 1 && t.y == 5 && t.z == 0) {
-			if (getTile(0, 5, 1, gameTiles) != null) {
-				return false;
+			if (getTile(0, 5, 1, gameTiles) == null) {
+				return true;
 			}
 		}
 		// Top special case
@@ -49,10 +49,12 @@ public class MahJongModel {
 			return true;
 		}
 		
-		else if (getTile(t.x + 1, t.y, t.z, gameTiles) != null && getTile(t.x - 1, t.y, t.z, gameTiles) != null ||
-				getTile(t.x, t.y, t.z+1, gameTiles) != null) {
-			return false;
+		// All other tiles (check left neighbor, right neighbor, and top neighbor)
+		else if (getTile(t.x + 1, t.y, t.z, gameTiles) == null || getTile(t.x - 1, t.y, t.z, gameTiles) == null) {
+			if (getTile(t.x, t.y, t.z+1, gameTiles) == null) {
+				return true;
+			}
 		}
-		return true;
+		return false;
 	}
 }

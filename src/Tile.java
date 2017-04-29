@@ -36,9 +36,13 @@ public class Tile extends JPanel {
 	
 	public boolean matches(Tile other) {
 		Tile otherObject = (Tile) other;
-
-		return this.getClass() == otherObject.getClass();
+		
+		if (this.getClass() == otherObject.getClass()) {
+			return true;
+		}
+		return false;
 	}
+	
 
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
